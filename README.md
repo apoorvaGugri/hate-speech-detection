@@ -19,6 +19,46 @@ All six models have been trained and evaluated on the real dataset (November 202
 the scripts generate. Each model was trained once with a fixed seed, so treat small differences
 between models as noise.
 
+## Demo
+
+The Streamlit app running the fine-tuned BERT model locally. Each prediction comes with class
+probabilities and a LIME explanation of which words moved it.
+
+| Neither | Offensive language |
+|---|---|
+| <img src="docs/screenshots/01_neither.png" width="420"> | <img src="docs/screenshots/02_offensive.png" width="420"> |
+| An ordinary sentence: "Neither", 99.5% confidence. | Profanity with no group targeted: "Offensive language", 93.5%. The two swear words carry the explanation. |
+
+| Hate speech | Known limitation |
+|---|---|
+| <img src="docs/screenshots/03_hate_speech.png" width="420"> | <img src="docs/screenshots/04_limitation_identity_term.png" width="420"> |
+| A group is attacked without any slur: "Hate speech", 98.4%. Note that the group word itself is the strongest signal. | **A wrong prediction.** A harmless self-description is labelled "Hate speech" at 95.3%, driven almost entirely by one identity word. This is the bias measured in the [bias audit](#bias-audit-bert-the-model-over-flags-identity-terms). |
+
+These are four hand-picked inputs, shown to illustrate the interface and one documented failure;
+they are not evidence of accuracy. The measured performance is in [Results](#results).
+
+## Try it in 15 minutes
+
+No GPU needed. This trains the three TF-IDF baselines and opens the app with them (Windows
+PowerShell; on macOS/Linux activate with `source .venv/bin/activate`):
+
+```powershell
+git clone https://github.com/apoorvaGugri/hate-speech-detection.git
+cd hate-speech-detection
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+
+python -m src.data.download
+python -m src.data.split
+python -m src.training.train_baselines
+streamlit run app/streamlit_app.py
+```
+
+The fine-tuned BERT weights (about 440 MB) are not stored in this repository. To reproduce the
+BERT results, run `notebooks/colab_train_bert.ipynb` on a free Colab GPU (about 6 minutes of
+training) or `python -m src.training.train_bert` locally.
+
 ## Project structure
 
 ```
@@ -26,7 +66,7 @@ hate-speech-detection/
 ├── app/streamlit_app.py          Streamlit interface
 ├── configs/config.yaml           every hyper-parameter and path
 ├── data/raw, data/processed      dataset and saved splits (git-ignored)
-├── docs/                         dataset card, interview guide
+├── docs/                         dataset card, interview guide, app screenshots
 ├── models/                       trained artefacts (git-ignored)
 ├── notebooks/                    EDA notebook, Colab BERT training notebook
 ├── reports/                      metrics, figures, comparison, audits
