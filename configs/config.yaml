@@ -1,0 +1,82 @@
+# Central configuration. Every script reads this file, so an experiment is
+# described by (git commit + this file). Paths are relative to the project root.
+
+project:
+  name: hate-speech-detection
+  seed: 42
+
+paths:
+  raw_data: data/raw/labeled_data.csv
+  processed_dir: data/processed
+  models_dir: models
+  reports_dir: reports
+  figures_dir: reports/figures
+  metrics_dir: reports/metrics
+  predictions_dir: reports/predictions      # contains raw tweet text -> git-ignored
+  logs_dir: logs
+
+data:
+  url: https://raw.githubusercontent.com/t-davidson/hate-speech-and-offensive-language/master/data/labeled_data.csv
+  expected_rows: 24783
+  val_size: 0.10
+  test_size: 0.10
+  drop_duplicates: true        # de-duplicate BEFORE splitting (prevents train/test leakage)
+
+# ---- Phase 3: classical baselines -------------------------------------------
+baselines:
+  tfidf:
+    ngram_range: [1, 2]
+    min_df: 2
+    max_df: 0.95
+    max_features: 50000
+    sublinear_tf: true
+  # Small grids. The winner is chosen on the VALIDATION set by macro-F1.
+  grids:
+    logistic_regression: [0.1, 1.0, 10.0]   # C  (inverse regularisation strength)
+    linear_svm: [0.01, 0.1, 1.0]            # C
+    naive_bayes: [0.1, 0.5, 1.0]            # alpha (Laplace/Lidstone smoothing)
+
+# ---- Phase 4: CNN and BiLSTM -------------------------------------------------
+neural:
+  max_len: 64
+  min_freq: 2
+  max_vocab: 30000
+  embed_dim: 128
+  dropout: 0.5
+  batch_size: 64
+  epochs: 10
+  lr: 0.001
+  patience: 3                  # early stopping on validation macro-F1
+  use_class_weights: true
+  cnn:
+    num_filters: 100
+    kernel_sizes: [3, 4, 5]
+  bilstm:
+    hidden_dim: 128
+    num_layers: 1
+
+# ---- Phase 5: BERT -----------------------------------------------------------
+bert:
+  model_name: bert-base-uncased
+  max_len: 96
+  batch_size: 16
+  eval_batch_size: 64
+  epochs: 3
+  lr: 2.0e-5
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  max_grad_norm: 1.0
+  patience: 2
+  use_class_weights: true
+
+tracking:
+  use_mlflow: true             # silently skipped if mlflow is not installed
+  tracking_uri: sqlite:///mlflow.db
+  experiment_name: hate-speech-detection
+
+explainability:
+  lime_num_features: 10
+  lime_num_samples: 1000
+
+robustness:
+  sample_size: 500

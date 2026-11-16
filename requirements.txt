@@ -1,0 +1,35 @@
+# Python 3.11. Lower bounds only, so pip picks current compatible releases.
+#
+# PyTorch: `pip install -r requirements.txt` installs the default build
+# (CPU-only on Windows). If you have an NVIDIA GPU, install the CUDA build
+# FIRST using the command from https://pytorch.org/get-started/locally/
+# and then install this file.
+
+# Core data / classical ML
+numpy>=1.26
+pandas>=2.1
+scikit-learn>=1.4
+joblib>=1.3
+pyyaml>=6.0
+tqdm>=4.66
+
+# Plots
+matplotlib>=3.8
+seaborn>=0.13
+
+# Deep learning
+torch>=2.2
+transformers>=4.40
+
+# Explainability
+lime>=0.2.0.1
+
+# Experiment tracking (optional: set tracking.use_mlflow to false to skip)
+mlflow>=2.12
+
+# Application
+streamlit>=1.35
+
+# Notebooks and tests
+jupyter>=1.0
+pytest>=8.0

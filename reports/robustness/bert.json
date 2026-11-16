@@ -1,0 +1,42 @@
+{
+  "model": "bert",
+  "sample_size": 500,
+  "results": [
+    {
+      "perturbation": "clean",
+      "f1_macro": 0.7716042411694586,
+      "recall_hate_speech": 0.5172413793103449,
+      "flip_rate": 0.0
+    },
+    {
+      "perturbation": "typo_swap",
+      "f1_macro": 0.6940222988069878,
+      "recall_hate_speech": 0.4827586206896552,
+      "flip_rate": 0.088
+    },
+    {
+      "perturbation": "leetspeak",
+      "f1_macro": 0.6860056955851349,
+      "recall_hate_speech": 0.4827586206896552,
+      "flip_rate": 0.094
+    },
+    {
+      "perturbation": "char_separator",
+      "f1_macro": 0.6983596231169047,
+      "recall_hate_speech": 0.4827586206896552,
+      "flip_rate": 0.084
+    },
+    {
+      "perturbation": "uppercase",
+      "f1_macro": 0.7716042411694586,
+      "recall_hate_speech": 0.5172413793103449,
+      "flip_rate": 0.0
+    },
+    {
+      "perturbation": "benign_suffix",
+      "f1_macro": 0.7823475528121873,
+      "recall_hate_speech": 0.5172413793103449,
+      "flip_rate": 0.012
+    }
+  ]
+}

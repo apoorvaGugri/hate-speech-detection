@@ -1,0 +1,195 @@
+{
+  "model": "bert",
+  "subgroups": {
+    "any_identity_term": {
+      "tweets": 242,
+      "neither_flagged": {
+        "n": 39,
+        "rate": 0.1538
+      },
+      "false_hate": {
+        "n": 215,
+        "rate": 0.107
+      },
+      "hate_missed": {
+        "n": 27,
+        "rate": 0.1111
+      }
+    },
+    "gender": {
+      "tweets": 157,
+      "neither_flagged": {
+        "n": 25,
+        "rate": 0.2
+      },
+      "false_hate": {
+        "n": 153,
+        "rate": 0.0654
+      },
+      "hate_missed": {
+        "n": 4,
+        "rate": 0.5
+      }
+    },
+    "sexual_orientation_gender_identity": {
+      "tweets": 21,
+      "neither_flagged": {
+        "n": 2,
+        "rate": 0.5
+      },
+      "false_hate": {
+        "n": 15,
+        "rate": 0.3333
+      },
+      "hate_missed": {
+        "n": 6,
+        "rate": 0.0
+      }
+    },
+    "religion": {
+      "tweets": 10,
+      "neither_flagged": {
+        "n": 3,
+        "rate": 0.0
+      },
+      "false_hate": {
+        "n": 6,
+        "rate": 0.1667
+      },
+      "hate_missed": {
+        "n": 4,
+        "rate": 0.0
+      }
+    },
+    "race_ethnicity_origin": {
+      "tweets": 63,
+      "neither_flagged": {
+        "n": 12,
+        "rate": 0.0833
+      },
+      "false_hate": {
+        "n": 48,
+        "rate": 0.2083
+      },
+      "hate_missed": {
+        "n": 15,
+        "rate": 0.0667
+      }
+    },
+    "disability": {
+      "tweets": 2,
+      "neither_flagged": {
+        "n": 0,
+        "rate": null
+      },
+      "false_hate": {
+        "n": 2,
+        "rate": 0.0
+      },
+      "hate_missed": {
+        "n": 0,
+        "rate": null
+      }
+    },
+    "no_identity_term": {
+      "tweets": 2194,
+      "neither_flagged": {
+        "n": 370,
+        "rate": 0.0622
+      },
+      "false_hate": {
+        "n": 2081,
+        "rate": 0.0447
+      },
+      "hate_missed": {
+        "n": 113,
+        "rate": 0.3894
+      }
+    }
+  },
+  "template_probe": {
+    "per_term": [
+      {
+        "term": "gay",
+        "sentences": 6,
+        "flagged": 6,
+        "flagged_as_hate": 6
+      },
+      {
+        "term": "lesbian",
+        "sentences": 6,
+        "flagged": 6,
+        "flagged_as_hate": 6
+      },
+      {
+        "term": "transgender",
+        "sentences": 6,
+        "flagged": 6,
+        "flagged_as_hate": 6
+      },
+      {
+        "term": "muslim",
+        "sentences": 6,
+        "flagged": 1,
+        "flagged_as_hate": 1
+      },
+      {
+        "term": "jewish",
+        "sentences": 6,
+        "flagged": 1,
+        "flagged_as_hate": 1
+      },
+      {
+        "term": "christian",
+        "sentences": 6,
+        "flagged": 0,
+        "flagged_as_hate": 0
+      },
+      {
+        "term": "hindu",
+        "sentences": 6,
+        "flagged": 0,
+        "flagged_as_hate": 0
+      },
+      {
+        "term": "black",
+        "sentences": 6,
+        "flagged": 2,
+        "flagged_as_hate": 2
+      },
+      {
+        "term": "white",
+        "sentences": 6,
+        "flagged": 2,
+        "flagged_as_hate": 2
+      },
+      {
+        "term": "asian",
+        "sentences": 6,
+        "flagged": 1,
+        "flagged_as_hate": 1
+      },
+      {
+        "term": "latino",
+        "sentences": 6,
+        "flagged": 2,
+        "flagged_as_hate": 2
+      },
+      {
+        "term": "disabled",
+        "sentences": 6,
+        "flagged": 0,
+        "flagged_as_hate": 0
+      },
+      {
+        "term": "deaf",
+        "sentences": 6,
+        "flagged": 1,
+        "flagged_as_hate": 1
+      }
+    ],
+    "identity_flag_rate": 0.359,
+    "control_flag_rate": 0.0,
+    "control_sentences": 5
+  }
+}

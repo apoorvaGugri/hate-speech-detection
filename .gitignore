@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE / OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# Secrets
+.env
+*.key
+.streamlit/secrets.toml
+
+# Data: never commit the tweets. Re-create with `python -m src.data.download`.
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Model weights (BERT is ~440 MB). Re-create with the training scripts.
+models/*
+!models/.gitkeep
+
+# Reports that contain raw tweet text
+reports/predictions/
+reports/error_analysis/
+reports/explainability/
+
+# Experiment tracking and logs
+mlruns/
+mlflow.db
+mlartifacts/
+logs/
+
+# Archives (the Colab result zip is ~390 MB)
+*.zip
